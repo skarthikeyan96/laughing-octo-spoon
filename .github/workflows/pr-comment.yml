@@ -22,5 +22,5 @@ jobs:
       - run: npm ci
       # Run pr-comment.js with Node and pass the authentication token 
       - run: node .github/actions/pr-comment.js
-        with:
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
