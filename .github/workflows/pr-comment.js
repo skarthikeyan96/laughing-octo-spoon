@@ -2,8 +2,7 @@
 // see https://git.io/JvUf7 for a full list
 const eventPayload = require(process.env.GITHUB_EVENT_PATH);
 const { Octokit } = require("@octokit/action");
-const standard = require('standard');
-console.log(standard);
+
 createPrComment();
 
 async function createPrComment() {
