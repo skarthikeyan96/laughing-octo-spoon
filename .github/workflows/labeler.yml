@@ -1,0 +1,14 @@
+name: PR Label
+on:
+  # Run this workflow only when a new pull request is opened
+  # compare: https://git.io/JvTyV
+  pull_request:
+    types: [opened]
+
+jobs:
+    triage:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/labeler@v2
+          env:
+            repo-token: "${{ secrets.GITHUB_TOKEN }}"
