@@ -2,11 +2,8 @@ name: PR Comment
 on:
   # Run this workflow only when a new pull request is opened
   # compare: https://git.io/JvTyV
-  push:
-    branches:
-      - master
-  # pull_request:
-  #   types: [opened]
+  pull_request:
+    types: [opened]
 
 jobs:
   pr_comment:
