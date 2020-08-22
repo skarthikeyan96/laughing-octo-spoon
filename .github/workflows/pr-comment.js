@@ -4,6 +4,7 @@ const eventPayload = require(process.env.GITHUB_EVENT_PATH);
 const { Octokit } = require("@octokit/action");
 
 createPrComment();
+createPrLabel();
 
 async function createPrComment() {
   // No need to pass process.env.GITHUB_TOKEN, `@octokit/action`
@@ -19,5 +20,23 @@ async function createPrComment() {
     }
   );
 
+ 
+
   console.log("Comment created: %d", data.html_url);
+}
+
+async function createPrLabel() {
+  const octokit = new Octokit();
+// See https://developer.github.com/v3/issues/comments/#create-a-comment
+const { data } = await octokit.request(
+  "POST /repos/:repository/issues/:pr_number/labels",
+  {
+    repository: process.env.GITHUB_REPOSITORY,
+    pr_number: eventPayload.pull_request.number,
+    labels: [
+      'NOT REVIEWED'
+    ]
+  }
+)
+  console.log("Label created")
 }
